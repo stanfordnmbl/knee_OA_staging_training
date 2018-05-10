@@ -12,6 +12,8 @@ Demo script showing detections in sample images.
 
 See README.md for installation instructions before running.
 """
+import matplotlib
+matplotlib.use('Agg')
 
 import _init_paths
 from fast_rcnn.config import cfg
@@ -23,6 +25,7 @@ import numpy as np
 import scipy.io as sio
 import caffe, os, sys, cv2
 import argparse
+
 
 CLASSES = ('__background__',
            'aeroplane', 'bicycle', 'bird', 'boat',
@@ -148,4 +151,3 @@ if __name__ == '__main__':
         print 'Demo for data/demo/{}'.format(im_name)
         demo(net, im_name)
 
-    plt.show()
