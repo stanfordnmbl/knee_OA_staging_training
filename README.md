@@ -1,4 +1,4 @@
-# py-faster-rcnn has been deprecated. Please see [Detectron](https://github.com/facebookresearch/Detectron), which includes an implementation of [Mask R-CNN](https://arxiv.org/abs/1703.06870).
+# Training code of Faster R-CNN used in knee staging prediction
 
 ### Disclaimer
 
@@ -13,32 +13,13 @@ In particular, this Python port
  - gives similar, but not exactly the same, mAP as the MATLAB version
  - is *not compatible* with models trained using the MATLAB code due to the minor implementation differences
  - **includes approximate joint training** that is 1.5x faster than alternating optimization (for VGG16) -- see these [slides](https://www.dropbox.com/s/xtr4yd4i5e0vw8g/iccv15_tutorial_training_rbg.pdf?dl=0) for more information
-
-# *Faster* R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
-
-By Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun (Microsoft Research)
-
-This Python implementation contains contributions from Sean Bell (Cornell) written during an MSR internship.
-
-Please see the official [README.md](https://github.com/ShaoqingRen/faster_rcnn/blob/master/README.md) for more details.
-
-Faster R-CNN was initially described in an [arXiv tech report](http://arxiv.org/abs/1506.01497) and was subsequently published in NIPS 2015.
+ 
+This repository is build on https://github.com/rbgirshick/py-faster-rcnn by Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun (Microsoft Research).
+Note that py-faster-rcnn has been deprecated. Please see [Detectron](https://github.com/facebookresearch/Detectron), which includes an implementation of [Mask R-CNN](https://arxiv.org/abs/1703.06870).
 
 ### License
 
-Faster R-CNN is released under the MIT License (refer to the LICENSE file for details).
-
-### Citing Faster R-CNN
-
-If you find Faster R-CNN useful in your research, please consider citing:
-
-    @inproceedings{renNIPS15fasterrcnn,
-        Author = {Shaoqing Ren and Kaiming He and Ross Girshick and Jian Sun},
-        Title = {Faster {R-CNN}: Towards Real-Time Object Detection
-                 with Region Proposal Networks},
-        Booktitle = {Advances in Neural Information Processing Systems ({NIPS})},
-        Year = {2015}
-    }
+This code is released under the MIT License (refer to the LICENSE file for details).
 
 ### Contents
 1. [Requirements: software](#requirements-software)
@@ -78,7 +59,7 @@ If you find Faster R-CNN useful in your research, please consider citing:
 1. Clone the Faster R-CNN repository
   ```Shell
   # Make sure to clone with --recursive
-  git clone --recursive https://github.com/rbgirshick/py-faster-rcnn.git
+  git clone --recursive https://github.com/stanfordnmbl/knee_OA_staging_training.git
   ```
 
 2. We'll call the directory that you cloned Faster R-CNN into `FRCN_ROOT`
@@ -129,41 +110,22 @@ cd $FRCN_ROOT
 The demo performs detection using a VGG16 network trained for detection on PASCAL VOC 2007.
 
 ### Beyond the demo: installation for training and testing models
-1. Download the training, validation, test data and VOCdevkit
+1. It should have this basic structure
 
-	```Shell
-	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
-	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
-	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
-	```
+    ```Shell
+    $VOCdevkit/                           
+    $VOCdevkit/VOC2007                    # image sets, annotations, etc.
+    # ... and several other directories ...
+    ```
 
-2. Extract all of these tars into one directory named `VOCdevkit`
+2. Create symlinks for the dataset
 
-	```Shell
-	tar xvf VOCtrainval_06-Nov-2007.tar
-	tar xvf VOCtest_06-Nov-2007.tar
-	tar xvf VOCdevkit_08-Jun-2007.tar
-	```
-
-3. It should have this basic structure
-
-	```Shell
-  	$VOCdevkit/                           # development kit
-  	$VOCdevkit/VOCcode/                   # VOC utility code
-  	$VOCdevkit/VOC2007                    # image sets, annotations, etc.
-  	# ... and several other directories ...
-  	```
-
-4. Create symlinks for the PASCAL VOC dataset
-
-	```Shell
+    ```Shell
     cd $FRCN_ROOT/data
     ln -s $VOCdevkit VOCdevkit2007
     ```
-    Using symlinks is a good idea because you will likely want to share the same PASCAL dataset installation between multiple projects.
-5. [Optional] follow similar steps to get PASCAL VOC 2010 and 2012
-6. [Optional] If you want to use COCO, please see some notes under `data/README.md`
-7. Follow the next sections to download pre-trained ImageNet models
+
+3. Follow the next sections to download pre-trained ImageNet models
 
 ### Download pre-trained ImageNet models
 
