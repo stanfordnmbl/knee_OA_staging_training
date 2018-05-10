@@ -2,20 +2,7 @@
 
 ### Disclaimer
 
-The official Faster R-CNN code (written in MATLAB) is available [here](https://github.com/ShaoqingRen/faster_rcnn).
-If your goal is to reproduce the results in our NIPS 2015 paper, please use the [official code](https://github.com/ShaoqingRen/faster_rcnn).
-
-This repository contains a Python *reimplementation* of the MATLAB code.
-This Python implementation is built on a fork of [Fast R-CNN](https://github.com/rbgirshick/fast-rcnn).
-There are slight differences between the two implementations.
-In particular, this Python port
- - is ~10% slower at test-time, because some operations execute on the CPU in Python layers (e.g., 220ms / image vs. 200ms / image for VGG16)
- - gives similar, but not exactly the same, mAP as the MATLAB version
- - is *not compatible* with models trained using the MATLAB code due to the minor implementation differences
- - **includes approximate joint training** that is 1.5x faster than alternating optimization (for VGG16) -- see these [slides](https://www.dropbox.com/s/xtr4yd4i5e0vw8g/iccv15_tutorial_training_rbg.pdf?dl=0) for more information
- 
-This repository is build on https://github.com/rbgirshick/py-faster-rcnn by Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun (Microsoft Research).
-Note that py-faster-rcnn has been deprecated. Please see [Detectron](https://github.com/facebookresearch/Detectron), which includes an implementation of [Mask R-CNN](https://arxiv.org/abs/1703.06870).
+This repository is build on a fork of https://github.com/rbgirshick/py-faster-rcnn by Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun (Microsoft Research).
 
 ### License
 
